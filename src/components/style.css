@@ -19,6 +19,7 @@
 
 .when-next {
   font-size: 1em;
+  padding-bottom: 15px;
 }
 
 .to-do-list-item h4 {
@@ -27,7 +28,7 @@
 
 .complete-todo-item {
   float: right;
-  right: 25px;
+  right: 35px;
   margin-bottom: 20px;
 }
 

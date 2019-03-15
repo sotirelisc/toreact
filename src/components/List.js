@@ -43,7 +43,7 @@ class List extends Component {
   };
 
   renderForm = () => {
-    const { showForm } = this.state;
+    const { showForm, whatNext, whereNext, whenNext, submitEnabled } = this.state;
 
     if (showForm) {
       return (
@@ -51,7 +51,7 @@ class List extends Component {
           <form onSubmit={this.formSubmit}>
             <div className="input-field">
               <input 
-                value={this.state.whatNext}
+                value={whatNext}
                 onChange={this.handleInputChange}
                 id="whatNext"
                 name="whatNext"
@@ -61,7 +61,7 @@ class List extends Component {
             </div>
             <div className="input-field">
               <input 
-                value={this.state.whereNext}
+                value={whereNext}
                 onChange={this.handleInputChange}
                 id="whereNext"
                 name="whereNext"
@@ -71,7 +71,7 @@ class List extends Component {
             </div>
             <div className="input-field">
               <input 
-                value={this.state.whenNext}
+                value={whenNext}
                 onChange={this.handleInputChange}
                 id="whenNext"
                 name="whenNext"
@@ -79,7 +79,7 @@ class List extends Component {
               />
               <label htmlFor="whenNext">When?</label>
             </div>
-            <input disabled={!this.state.submitEnabled} className="btn red submit-btn" type="submit" value="Create" />
+            <input disabled={!submitEnabled} className="btn red submit-btn" type="submit" value="Create" />
           </form>
         </div>
       );
@@ -106,12 +106,15 @@ class List extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { showForm } = this.state;
 
     if (this.props.isLoading) {
       return (
-        <Spinner size={80} spinnerColor={"#333"} spinnerWidth={1} visible={true} />
+        <div className="to-do-list-container">
+          <div className="row">
+            <Spinner size={80} spinnerColor={"#333"} spinnerWidth={1} visible={true} />
+          </div>
+        </div>
       );
     }
 
