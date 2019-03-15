@@ -23,8 +23,8 @@ class ListItem extends Component {
         >
           <span>Done</span>
         </span>
-        <h4 className="where-next"><Icon>location_on</Icon>{todo.whereNext}</h4>
-        <h4 className="when-next"><Icon>date_range</Icon>{todo.whenNext}</h4>
+        <h4 className="where-next"><Icon tiny>location_on</Icon>{todo.whereNext}</h4>
+        <h4 className="when-next"><Icon tiny>date_range</Icon>{todo.whenNext}</h4>
       </div>
     );
   }
