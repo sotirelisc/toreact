@@ -1,23 +1,25 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {completeToDo} from '../actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { completeToDo } from '../actions';
 
 class ListItem extends Component {
   completeClick = completeTodoId => {
-    const {completeToDo} = this.props;
+    const { completeToDo } = this.props;
+
     completeToDo(completeTodoId);
   };
   render() {
-    const{todoId, todo} = this.props;
+    const { todoId, todo } = this.props;
+
     return (
-      <div key="toDoName" className="col s10 offset-s1 to-do-list-item black">
+      <div key="toDoName" className="col s10 offset-s1 to-do-list-item red">
         <h4>
           {todo.title}
           <span 
             onClick={() => this.completeClick(todoId)}
-            className="complete-todo-item waves-effect waves-light blue lighten-5 blue-text text-darken-4 btn"
+            className="complete-todo-item btn black"
           >
-            <i className="large material-icons">Done</i>
+            <span className="material-icons">Done</span>
           </span>
         </h4>
       </div>

@@ -1,6 +1,7 @@
 .to-do-list-container {
   margin-top: 25px;
 }
+
 .to-do-list-item {
   margin-top: 10px;
   color: white;
@@ -8,17 +9,14 @@
 }
 
 .to-do-list-item h4 {
-  padding-left: 25px;
-  padding-bottom: 5px;
-}
-
-.to-do-list-item:hover {
-  background-color: dodgerblue !important;
+  font-size: 1.5em;
+  padding-left: 20px;
 }
 
 .complete-todo-item {
   float: right;
-  right: 20px;
+  right: 25px;
+  margin-bottom: 20px;
 }
 
 #todo-add-form {
@@ -27,7 +25,7 @@
 }
 
 input#todoNext:active {
-  border-bottom: 1px solid dodgerblue !important;
+  border-bottom: 1px solid red !important;
 }
 
 @keyframes slidein {

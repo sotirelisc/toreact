@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import * as actions from '../actions';
 import ListItem from './ListItem';
@@ -8,41 +8,76 @@ import "./style.css";
 class List extends Component {
   state = {
     showForm: false,
-    formValue: ""
+    whatNext: "",
+    whereNext: "",
+    whenNext: ""
   };
 
-  inputChange = event => {
-    this.setState({formValue: event.target.value});
+  handleInputChange = event => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+
+    console.log(this.state);
   };
 
   formSubmit = event => {
-    const {formValue} = this.state;
-    const {addToDo} = this.props;
+    const { whatNext, whereNext, whenNext } = this.state;
+    const { addToDo } = this.props;
+
     event.preventDefault();
-    addToDo({title: formValue});
-    this.setState({formValue: ""});
+    addToDo({ whatNext, whereNext, whenNext });
+
+    this.setState({ whatNext: "", whereNext: "", whenNext: "" });
   };
 
   renderForm = () => {
-    const {showForm, formValue} = this.state;
+    const { showForm } = this.state;
+
     if (showForm) {
       return (
         <div id="todo-add-form" className="col s10 offset-s1">
           <form onSubmit={this.formSubmit}>
             <div className="input-field">
               <input 
-                value={formValue}
-                onChange={this.inputChange}
-                id="toDoNext"
+                value={this.state.whatNext}
+                onChange={this.handleInputChange}
+                id="whatNext"
+                name="whatNext"
                 type="text"
               />
-              <label htmlFor="toDoNext">What Next?</label>
+              <label htmlFor="whatNext">What Next?</label>
+            </div>
+            <div className="input-field">
+              <input 
+                value={this.state.whereNext}
+                onChange={this.handleInputChange}
+                id="whereNext"
+                name="whereNext"
+                type="text"
+              />
+              <label htmlFor="whereNext">Where?</label>
+            </div>
+            <div className="input-field">
+              <input 
+                value={this.state.whenNext}
+                onChange={this.handleInputChange}
+                id="whenNext"
+                name="whenNext"
+                type="text"
+              />
+              <label htmlFor="whenNext">When?</label>
             </div>
           </form>
         </div>
       );
     }
   };
+
   renderToDo() {
     const {data} = this.props;
     const toDos = _.map(data, (value, key) => {
@@ -71,12 +106,12 @@ class List extends Component {
         <div className="fixed-action-btn">
           <button 
             onClick={() => this.setState({showForm: !showForm})}
-            className="btn-floating btn-large black darken-4"
+            className="btn-floating btn-large red darken-4"
           >
           {showForm ? (
-            <i className="large material-icons">-</i>
+            <span className="large material-icons">-</span>
           ) : (
-            <i className="large material-icons">+</i>
+            <span className="large material-icons">+</span>
           )}
           </button>
         </div>
