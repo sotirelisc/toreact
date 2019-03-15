@@ -22,6 +22,11 @@
 #todo-add-form {
   animation: 1s;
   animation-name: slidein;
+  margin-bottom: 40px;
+}
+
+.submit-btn {
+  float: right;
 }
 
 input#todoNext:active {

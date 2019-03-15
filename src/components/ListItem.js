@@ -8,20 +8,22 @@ class ListItem extends Component {
 
     completeToDo(completeTodoId);
   };
+
   render() {
+    console.log(this.props);
     const { todoId, todo } = this.props;
 
     return (
       <div key="toDoName" className="col s10 offset-s1 to-do-list-item red">
-        <h4>
-          {todo.title}
+        <h4>{todo.whatNext}</h4>
           <span 
             onClick={() => this.completeClick(todoId)}
             className="complete-todo-item btn black"
           >
             <span className="material-icons">Done</span>
           </span>
-        </h4>
+        <h4>{todo.whereNext}</h4>
+        <h4>{todo.whenNext}</h4>
       </div>
     );
   }

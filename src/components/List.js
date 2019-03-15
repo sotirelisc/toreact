@@ -10,7 +10,8 @@ class List extends Component {
     showForm: false,
     whatNext: "",
     whereNext: "",
-    whenNext: ""
+    whenNext: "",
+    submitEnabled: false
   };
 
   handleInputChange = event => {
@@ -18,11 +19,16 @@ class List extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
+    const { whatNext, whereNext, whenNext } = this.state;
+    if (whatNext.length > 0 && whereNext.length > 0 && whenNext.length > 0) {
+      this.setState({ submitEnabled: true });
+    } else {
+      this.setState({ submitEnabled: false });
+    }
+
     this.setState({
       [name]: value
     });
-
-    console.log(this.state);
   };
 
   formSubmit = event => {
@@ -72,6 +78,7 @@ class List extends Component {
               />
               <label htmlFor="whenNext">When?</label>
             </div>
+            <input disabled={!this.state.submitEnabled} className="btn red submit-btn" type="submit" value="Create" />
           </form>
         </div>
       );
@@ -79,7 +86,7 @@ class List extends Component {
   };
 
   renderToDo() {
-    const {data} = this.props;
+    const { data } = this.props;
     const toDos = _.map(data, (value, key) => {
       return <ListItem key={key} todoId={key} todo={value} />;
     });
@@ -88,15 +95,18 @@ class List extends Component {
     }
     return (
       <div className="col s10 offset-s1 center-align">
-        <h4>You have no more things ToDo!</h4>
+        <h4>You have no more things todo!</h4>
       </div>
     );
   }
+
   componentWillMount() {
     this.props.fetchToDos();
   }
+
   render() {
-    const {showForm} = this.state;
+    const { showForm } = this.state;
+
     return (
       <div className="to-do-list-container">
         <div className="row">
@@ -105,7 +115,7 @@ class List extends Component {
         </div>
         <div className="fixed-action-btn">
           <button 
-            onClick={() => this.setState({showForm: !showForm})}
+            onClick={() => this.setState({ showForm: !showForm })}
             className="btn-floating btn-large red darken-4"
           >
           {showForm ? (
@@ -120,7 +130,7 @@ class List extends Component {
   }
 }
 
-const mapStateToProps = ({data}) => {
+const mapStateToProps = ({ data }) => {
   return {
     data
   }
