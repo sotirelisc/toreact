@@ -12,6 +12,7 @@
     "react-materialize": "^2.6.0",
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
+    "react-spinner-material": "^1.0.19",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },

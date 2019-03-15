@@ -4,6 +4,7 @@ import _ from 'lodash';
 import * as actions from '../actions';
 import ListItem from './ListItem';
 import "./style.css";
+import Spinner from 'react-spinner-material';
 
 class List extends Component {
   state = {
@@ -86,8 +87,8 @@ class List extends Component {
   };
 
   renderToDo() {
-    const { data } = this.props;
-    const toDos = _.map(data, (value, key) => {
+    const { todos } = this.props;
+    const toDos = _.map(todos, (value, key) => {
       return <ListItem key={key} todoId={key} todo={value} />;
     });
     if (!_.isEmpty(toDos)) {
@@ -105,7 +106,14 @@ class List extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { showForm } = this.state;
+
+    if (this.props.isLoading) {
+      return (
+        <Spinner size={80} spinnerColor={"#333"} spinnerWidth={1} visible={true} />
+      );
+    }
 
     return (
       <div className="to-do-list-container">
@@ -132,7 +140,8 @@ class List extends Component {
 
 const mapStateToProps = ({ data }) => {
   return {
-    data
+    todos: data.data,
+    isLoading: data.isLoading
   }
 }
 
