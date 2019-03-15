@@ -8,9 +8,21 @@
   transition: background-color 1s;
 }
 
-.to-do-list-item h4 {
+.what-next {
+  font-weight: 600;
   font-size: 1.5em;
-  padding-left: 20px;
+}
+
+.where-next {
+  font-size: 1em;
+}
+
+.when-next {
+  font-size: 1em;
+}
+
+.to-do-list-item h4 {
+  padding-left: 10px;
 }
 
 .complete-todo-item {
